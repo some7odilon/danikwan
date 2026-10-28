@@ -1,9 +1,16 @@
 services:
   postgres:
-    image: 'postgres:latest'
+    image: postgres:16
+    container_name: danikwan-db
+    restart: unless-stopped
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      POSTGRES_DB: danikwan
+      POSTGRES_USER: danikwan
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-danikwan}
     ports:
-      - '5432'
+      - "5433:5432"
+    volumes:
+      - danikwan-data:/var/lib/postgresql/data
+
+volumes:
+  danikwan-data:
