@@ -27,7 +27,7 @@ public class Profil extends BaseEntity {
     private String libelle;
 
     @Column (nullable = false)
-    private Boolean nativeProfil;
+    private boolean nativeProfil;
 
 
     @ManyToMany (fetch = FetchType.LAZY)

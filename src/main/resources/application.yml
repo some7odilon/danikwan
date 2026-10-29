@@ -14,3 +14,12 @@ spring:
 app:
   cors:
     allowed-origins: http://localhost:4200
+
+  security:
+    jwt:
+      secret: ${JWT_SECRET:dev-only-secret-change-me-in-production-0123456789}
+      expiration-minutes: 120
+    root:
+      username: root
+      email: root@danikwan.local
+      password: ${ROOT_PASSWORD:}

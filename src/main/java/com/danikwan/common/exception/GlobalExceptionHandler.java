@@ -58,4 +58,19 @@ public class GlobalExceptionHandler {
     }
 
 
+    @ExceptionHandler(org.springframework.security.core.AuthenticationException.class)
+    public ResponseEntity<ApiError> authentification(
+            org.springframework.security.core.AuthenticationException ex, HttpServletRequest req) {
+        return build(HttpStatus.UNAUTHORIZED, ex.getMessage(), req, List.of());
+    }
+
+    @ExceptionHandler(org.springframework.security.access.AccessDeniedException.class)
+    public ResponseEntity<ApiError> accesRefuse(
+            org.springframework.security.access.AccessDeniedException ex, HttpServletRequest req) {
+        return build(HttpStatus.FORBIDDEN, "Accès refusé : privilège insuffisant", req, List.of());
+    }
+
+
+
+
 }
